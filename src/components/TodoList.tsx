@@ -7,8 +7,6 @@ interface Props {
 
 export const TodoList: FC<Props> = ({ todos }) => (
   <div>
-    <h1>Your tasks</h1>
-    <p>Hi there!</p>
     <ul>
       {todos.map((todo) => (
         <li key={todo.id}>

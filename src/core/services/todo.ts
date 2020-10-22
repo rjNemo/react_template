@@ -1,7 +1,6 @@
 import Todo from '../models/todo';
 
 export const listTodos = (): Todo[] => {
-  console.log('create list');
   return [
     {
       id: '1',
