@@ -1,7 +1,24 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
-const App: FC = () => {
-  return <div>Hello</div>;
-};
+import Router from './Router';
+
+const App: FC = () => (
+  <div>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <Router />
+  </div>
+);
 
 export default App;
