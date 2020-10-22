@@ -1,20 +1,16 @@
 import React, { FC } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import profileImg from './assets/about/profile.jpg';
+import { Home } from './components/Home';
+import { About } from './components/About';
 
 const Router: FC = () => (
   <Switch>
     <Route exact path="/">
-      <div>Hello</div>
+      <Home />
     </Route>
     <Route exact path="/about">
-      <div>
-        <h1>About</h1>
-        <div>
-          <img src={profileImg} alt="profile" width="100%" />
-        </div>
-      </div>
+      <About />
     </Route>
   </Switch>
 );
