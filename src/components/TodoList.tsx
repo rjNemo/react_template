@@ -1,0 +1,20 @@
+import React, { FC } from 'react';
+import Todo from '../core/models/todo';
+
+interface Props {
+  todos: Todo[];
+}
+
+export const TodoList: FC<Props> = ({ todos }) => (
+  <div>
+    <h1>Your tasks</h1>
+    <p>Hi there!</p>
+    <ul>
+      {todos.map((todo) => (
+        <li key={todo.id}>
+          {todo.title}, status: {todo.isDone ? 'Done' : 'In Progress'}
+        </li>
+      ))}
+    </ul>
+  </div>
+);

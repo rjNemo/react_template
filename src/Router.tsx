@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { Home } from './components/Home';
 import { About } from './components/About';
+import { Home } from './containers/Home';
 
 const Router: FC = () => (
   <Switch>
