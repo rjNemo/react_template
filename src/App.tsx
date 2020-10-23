@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
 
 import Router from './Router';
-import { Header } from './components/Header';
+import { Layout } from './components/layout';
 
 const App: FC = () => (
-  <>
-    <Header />
+  <Layout>
     <Router />
-  </>
+  </Layout>
 );
 
 export default App;

@@ -1,11 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
+
 import Todo from '../../core/models/todo';
 
 interface Props {
   todos: Todo[];
 }
 
-export const TodoList: FC<Props> = ({ todos }) => (
+const TodoList: FC<Props> = ({ todos }) => (
   <div>
     <ul>
       {todos.map((todo) => (
@@ -16,3 +17,5 @@ export const TodoList: FC<Props> = ({ todos }) => (
     </ul>
   </div>
 );
+
+export default memo(TodoList);
