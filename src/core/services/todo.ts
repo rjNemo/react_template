@@ -1,16 +1,18 @@
+import { gql, useQuery } from '@apollo/client';
+
 import Todo from '../models/todo';
 
-export const listTodos = (): Todo[] => {
-  return [
-    {
-      todoId: '1',
-      title: 'test',
-      isDone: false
-    },
-    {
-      todoId: '2',
-      title: 'second',
-      isDone: true
+const LIST_TODOS = gql`
+  query ListAll {
+    listTodos {
+      todoId
+      title
+      isDone
     }
-  ];
+  }
+`;
+
+export const useListTodos = () => {
+  const { loading, error, data } = useQuery<{ listTodos: Todo[] }>(LIST_TODOS);
+  return { loading, error, data };
 };
