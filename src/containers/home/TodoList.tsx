@@ -10,7 +10,7 @@ const TodoList: FC<Props> = ({ todos }) => (
   <div>
     <ul>
       {todos.map((todo) => (
-        <li key={todo.id}>
+        <li key={todo.todoId}>
           {todo.title}, status: {todo.isDone ? 'Done' : 'In Progress'}
         </li>
       ))}

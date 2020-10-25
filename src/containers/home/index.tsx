@@ -1,20 +1,32 @@
 import React, { FC } from 'react';
+import { gql, useQuery } from '@apollo/client';
 
 import TodoList from './TodoList';
 import { Button } from '../../components/button';
 import { Container } from '../../components/container';
 
-import Todo from '../../core/models/todo';
-import { listTodos } from '../../core/services/todo';
+const LIST_TODOS = gql`
+  query ListAll {
+    listTodos {
+      todoId
+      title
+      isDone
+    }
+  }
+`;
 
 export const Home: FC = () => {
-  const todos: Todo[] = listTodos();
+  // const todos: Todo[] = listTodos();
+  const { loading, error, data } = useQuery(LIST_TODOS);
+  if (error) {
+    return <p>Sorry...</p>;
+  }
 
   return (
     <Container>
       <h1>Your tasks</h1>
       <p>Hi there!</p>
-      <TodoList todos={todos} />
+      {!loading && <TodoList todos={data.listTodos} />}
       <Button primary onClick={() => console.log('Clicked Normal Button')}>
         Normal Button
       </Button>
