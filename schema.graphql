@@ -1,0 +1,50 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: TodoQuery
+    mutation: Mutations
+}
+
+type CreateTodo {
+    todo: TodoType
+}
+
+type DeleteTodo {
+    todo: TodoType
+}
+
+type Mutations {
+    createTodo(title: String = ""): CreateTodo
+    deleteTodo(todoId: String!): DeleteTodo
+    updateTodo(todo: TodoInputType): UpdateTodo
+}
+
+"Defines the query and how to interact with"
+type TodoQuery {
+    getTodo(todoId: String!): TodoResponseField
+    listTodos: [TodoType]
+}
+
+type TodoResponseField {
+    errorMessage: String
+    isSuccess: Boolean
+    todo: TodoType
+}
+
+"Query Object Type"
+type TodoType {
+    isDone: Boolean
+    title: String
+    todoId: String
+}
+
+type UpdateTodo {
+    todo: TodoType
+}
+
+"Mutation Input Object Type"
+input TodoInputType {
+    isDone: Boolean = false
+    title: String = ""
+    todoId: String
+}
