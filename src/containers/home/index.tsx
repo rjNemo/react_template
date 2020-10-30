@@ -31,7 +31,7 @@ export const Home: FC = () => {
         !loading &&
         !!data && (
           <>
-            <TodoList todos={data.listTodos} />
+            <TodoList todos={data.listTodos.todos} />
             <form onSubmit={handleSubmit}>
               <input type="text" value={todoTitle} onChange={handleChange} />
               <Button

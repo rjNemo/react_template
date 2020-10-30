@@ -5,6 +5,10 @@ schema {
     mutation: Mutations
 }
 
+type CloseTodo {
+    todo: TodoType
+}
+
 type CreateTodo {
     todo: TodoType
 }
@@ -14,15 +18,22 @@ type DeleteTodo {
 }
 
 type Mutations {
+    closeTodo(todoId: String!): CloseTodo
     createTodo(title: String = ""): CreateTodo
     deleteTodo(todoId: String!): DeleteTodo
     updateTodo(todo: TodoInputType): UpdateTodo
 }
 
+type TodoListResponseField {
+    errorMessage: String
+    isSuccess: Boolean
+    todos: [TodoType]
+}
+
 "Defines the query and how to interact with"
 type TodoQuery {
     getTodo(todoId: String!): TodoResponseField
-    listTodos: [TodoType]
+    listTodos: TodoListResponseField
 }
 
 type TodoResponseField {
