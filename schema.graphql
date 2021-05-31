@@ -1,61 +1,144 @@
 # This file was generated based on ".graphqlconfig". Do not edit manually.
 
 schema {
-    query: TodoQuery
-    mutation: Mutations
+    query: Query
+    mutation: Mutation
 }
 
+"Response interface"
+interface ResponseField {
+    errorMessage: String
+    isSuccess: Boolean
+}
+
+"Assign an existing task to an existing user"
+type AssignTodoToUser {
+    result: ResponseField
+}
+
+"Close an existing task"
 type CloseTodo {
-    todo: TodoType
+    result: TodoResponseField
 }
 
+"Create a new task."
 type CreateTodo {
-    todo: TodoType
+    result: TodoResponseField
 }
 
+"Register an user"
+type CreateUser {
+    result: UserResponseField
+}
+
+"Deassign an existing task from an existing user"
+type DeassignTodoToUser {
+    result: ResponseField
+}
+
+"Delete an existing task"
 type DeleteTodo {
-    todo: TodoType
+    result: TodoResponseField
 }
 
-type Mutations {
+"Unregister an existing user"
+type DeleteUser {
+    result: UserResponseField
+}
+
+type Mutation {
+    "Assign an existing task to an existing user"
+    assignTodoToUser(todoId: String, userId: String): AssignTodoToUser
+    "Close an existing task"
     closeTodo(todoId: String!): CloseTodo
-    createTodo(title: String = ""): CreateTodo
+    "Create a new task."
+    createTodo(title: String!): CreateTodo
+    "Register an user"
+    createUser(username: String): CreateUser
+    "Deassign an existing task from an existing user"
+    deassignTodoToUser(todoId: String, userId: String): DeassignTodoToUser
+    "Delete an existing task"
     deleteTodo(todoId: String!): DeleteTodo
+    "Unregister an existing user"
+    deleteUser(userId: String!): DeleteUser
+    "Update an existing task"
     updateTodo(todo: TodoInputType): UpdateTodo
+    "Update user information"
+    updateUser(user: UserInputType): UpdateUser
 }
 
-type TodoListResponseField {
+type Query {
+    "Retrieve an existing tasks"
+    getTodo(todoId: String!): TodoResponseField
+    "Retrieve a registered user"
+    getUser(userId: String!): UserResponseField
+    "List existing tasks"
+    listTodos: TodoListResponseField
+    "List registered users"
+    listUsers: UserListResponseField
+}
+
+"Todos list response object"
+type TodoListResponseField implements ResponseField {
     errorMessage: String
     isSuccess: Boolean
     todos: [TodoType]
 }
 
-"Defines the query and how to interact with"
-type TodoQuery {
-    getTodo(todoId: String!): TodoResponseField
-    listTodos: TodoListResponseField
-}
-
-type TodoResponseField {
+"Todo response object"
+type TodoResponseField implements ResponseField {
     errorMessage: String
     isSuccess: Boolean
     todo: TodoType
 }
 
-"Query Object Type"
+"Todo Object Type"
 type TodoType {
     isDone: Boolean
     title: String
     todoId: String
 }
 
+"Update an existing task"
 type UpdateTodo {
-    todo: TodoType
+    result: TodoResponseField
 }
 
-"Mutation Input Object Type"
+"Update user information"
+type UpdateUser {
+    result: UserResponseField
+}
+
+"User list response object"
+type UserListResponseField implements ResponseField {
+    errorMessage: String
+    isSuccess: Boolean
+    users: [UserType]
+}
+
+"User response object"
+type UserResponseField implements ResponseField {
+    errorMessage: String
+    isSuccess: Boolean
+    user: UserType
+}
+
+"User schema type"
+type UserType {
+    tasks: [TodoType]
+    userId: String
+    username: String
+}
+
+"Todo Input Object"
 input TodoInputType {
-    isDone: Boolean = false
-    title: String = ""
+    isDone: Boolean
+    title: String
     todoId: String
+}
+
+"User input object"
+input UserInputType {
+    userId: String
+    username: String
 }

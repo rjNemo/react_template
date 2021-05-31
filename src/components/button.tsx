@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-interface ButtonProps {
+type ButtonProps = {
   readonly primary: boolean;
-}
+};
 
 export const Button = styled.button<ButtonProps>`
   background: transparent;

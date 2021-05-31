@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from '../assets/logo.svg';
 
-export const Header: FC = () => (
+export const Header = () => (
   <header>
     <nav>
       <img src={logo} alt="logo" width="50px" />

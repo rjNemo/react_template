@@ -1,12 +1,12 @@
-import React, { FC, memo } from 'react';
+import React, { memo } from 'react';
 
 import Todo from '../../core/models/todo';
 
-interface Props {
+type Props = {
   todos: Todo[];
-}
+};
 
-const TodoList: FC<Props> = ({ todos }) => (
+const TodoList = ({ todos }: Props) => (
   <div>
     <ul>
       {todos.map((todo) => (

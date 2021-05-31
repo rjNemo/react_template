@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { About } from './components/About';
+import { About } from './containers/about';
 import { Home } from './containers/home';
 
-const Router: FC = () => (
+const Router = () => (
   <Switch>
     <Route exact path="/">
       <Home />
